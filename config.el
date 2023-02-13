@@ -190,7 +190,6 @@
 (after! rjsx-mode
   (setq js-indent-level 4))
 
-
 (defun meow/setup-leader ()
   (map! :leader
         "?" #'meow-cheatsheet
@@ -256,7 +255,7 @@
 ;;;  meow setup
 (defun meow-setup ()
   (set-useful-keybindings)
-  (meow/setup-doom-keybindings)
+  ;; (meow/setup-doom-keybindings)
   ;; for doom emacs
   ;;(add-to-list 'meow-keymap-alist (cons 'leader doom-leader-map))
   ;;(meow-normal-define-key (cons "SPC" doom-leader-map))
@@ -296,8 +295,7 @@
    '("9" . meow-digit-argument)
    '("0" . meow-digit-argument)
    '("/" . meow-keypad-describe-key)
-   '("?" . meow-cheatsheet)
-   )
+   '("q" . meow-cheatsheet))
 
   (meow-normal-define-key
    '("0" . meow-expand-0)
@@ -366,19 +364,19 @@
    ;;'("<escape>" . mode-line-other-buffer)
    )
   ;; Let =C-[= be the =ESC= of =evil= in =meow=:
-  (defun meow-insert-define-key (&rest keybindings)
-    "Define key for insert state.
+;;   (defun meow-insert-define-key (&rest keybindings)
+;;     "Define key for insert state.
 
-Usage:
-  (meow-insert-define-key
-   '(\"C-<space>\" . meow-insert-exit))"
-    (mapcar (lambda (key-ref)
-              (define-key meow-insert-state-keymap
-                          (kbd (car key-ref))
-                          (meow--parse-def (cdr key-ref))))
-            keybindings))
-  (meow-insert-define-key
-   '("\C-[" . meow-insert-exit))
+;; Usage:
+;;   (meow-insert-define-key
+;;    '(\"C-<space>\" . meow-insert-exit))"
+;;     (mapcar (lambda (key-ref)
+;;               (define-key meow-insert-state-keymap
+;;                           (kbd (car key-ref))
+;;                           (meow--parse-def (cdr key-ref))))
+;;             keybindings))
+;;   (meow-insert-define-key
+;;    '("\C-[" . meow-insert-exit))
 
   (setq meow-expand-exclude-mode-list nil)
   (setq meow-expand-hint-remove-delay 1024)
