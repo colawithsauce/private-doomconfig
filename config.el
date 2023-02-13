@@ -37,6 +37,10 @@
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'relative)
+(setq doom-modeline-buffer-file-name-style 'auto)
+(setq line-number-mode nil)
+(setq column-number-mode nil)
+(setq size-indication-mode nil)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -76,6 +80,9 @@
 ;; they are implemented.
 
 ;; (add-to-list 'face-font-rescale-alist '("IBM Plex Sans JP" . 0.9))
+
+(setq save-interprogram-paste-before-kill t)
+(setq kill-do-not-save-duplicates t)
 
 (map! (:after evil-org
        :map evil-org-mode-map
@@ -143,6 +150,7 @@
                         (:endgroup . nil)
                         ("card" . ?c)))
   (plist-put! org-format-latex-options :scale 2.0)
+  (add-hook 'org-mode-hook (cmd! (display-line-numbers-mode -1)))
   (after! org-roam
     (use-package! consult-org-roam
       :init
@@ -153,6 +161,10 @@
              :desc "Forward link" :ni "m l" #'consult-org-roam-forward-links
              :desc "Backward link" :ni "m h" #'consult-org-roam-backlinks))
       (setq org-roam-dailies-directory "journals/")
+      (setq org-roam-capture-templates
+            '(("d" "default" plain "%?" :target
+               (file+head "${slug}.org" "#+title: ${title}\n")
+               :unnarrowed t)))
       (add-to-list 'org-roam-file-exclude-regexp "logseq/bak"))))
 
 ;; (use-package! org-latex-impatient
@@ -166,8 +178,7 @@
 
 (use-package! rime-regexp
   :load-path "~/.doom.d/lisp/rime-regexp.el"
-  :defer t
-  :after rime
+  :after-call rime-mode-hook
   :config
   (rime-regexp-mode t))
 
