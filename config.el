@@ -250,9 +250,7 @@
          :desc "Pop up scratch buffer"       "x"   #'doom/open-scratch-buffer
          :desc "Switch to scratch buffer"    "X"   #'doom/switch-to-scratch-buffer
          :desc "Bury buffer"                 "z"   #'bury-buffer
-         :desc "Kill buried buffers"         "Z"   #'doom/kill-buried-buffers)
-        )
-  )
+         :desc "Kill buried buffers"         "Z"   #'doom/kill-buried-buffers)))
 
 
 ;;;  meow setup
