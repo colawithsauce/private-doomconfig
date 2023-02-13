@@ -65,3 +65,6 @@
   :recipe (:repo "alphapapa/org-ql"))
 (package! org-ml
   :recipe (:repo "ndwarshuis/org-ml"))
+
+;; Modular editing
+(package! meow)
